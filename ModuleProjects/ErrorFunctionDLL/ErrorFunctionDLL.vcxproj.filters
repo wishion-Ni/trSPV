@@ -15,37 +15,40 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ErrorFunction.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="L2ErrorFunction.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="L1ErrorFunction.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="HuberErrorFunction.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="LogCoshErrorFunction.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="HuberErrorFunction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="L1ErrorFunction.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="L2ErrorFunction.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="HuberErrorFunction.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="LogCoshErrorFunction.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main_ErrorFunction_demo.cpp">
+    <ClCompile Include="ErrorFunctionFactory.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HuberErrorFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="L1ErrorFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="L2ErrorFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LogCoshErrorFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorFunctionFactory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
