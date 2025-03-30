@@ -51,6 +51,9 @@
     <ClInclude Include="KLDivLoss.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CompositeLossFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComplexL2LossFunction.cpp">
@@ -84,6 +87,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ComplexIoULoss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CompositeLossFunction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main_ComplexLossFunction_demo.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

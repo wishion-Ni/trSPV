@@ -146,6 +146,7 @@
     <ClInclude Include="ComplexLogCoshLoss.h" />
     <ClInclude Include="ComplexLossFunction.h" />
     <ClInclude Include="ComplexPseudoHuberLoss.h" />
+    <ClInclude Include="CompositeLossFunction.h" />
     <ClInclude Include="CosineSimilarityLoss.h" />
     <ClInclude Include="JSDivLoss.h" />
     <ClInclude Include="KLDivLoss.h" />
@@ -159,9 +160,11 @@
     <ClCompile Include="ComplexL2LossFunction.cpp" />
     <ClCompile Include="ComplexLogCoshLoss.cpp" />
     <ClCompile Include="ComplexPseudoHuberLoss.cpp" />
+    <ClCompile Include="CompositeLossFunction.cpp" />
     <ClCompile Include="CosineSimilarityLoss.cpp" />
     <ClCompile Include="JSDivLoss.cpp" />
     <ClCompile Include="KLDivLoss.cpp" />
+    <ClCompile Include="main_ComplexLossFunction_demo.cpp" />
     <ClCompile Include="ModulusSquaredDiffLoss.cpp" />
     <ClCompile Include="WassersteinLoss.cpp" />
   </ItemGroup>
