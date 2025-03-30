@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ComplexLossFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplexL2LossFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplexL1LossFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplexPseudoHuberLoss.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplexLogCoshLoss.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplexIoULoss.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="JSDivLoss.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="WassersteinLoss.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AmplitudePhaseL2Loss.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulusSquaredDiffLoss.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CosineSimilarityLoss.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KLDivLoss.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ComplexL2LossFunction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ComplexL1LossFunction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ComplexPseudoHuberLoss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ComplexLogCoshLoss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AmplitudePhaseL2Loss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulusSquaredDiffLoss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CosineSimilarityLoss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="KLDivLoss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="JSDivLoss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WassersteinLoss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ComplexIoULoss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
