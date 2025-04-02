@@ -1,56 +1,72 @@
-﻿#include <Windows.h>
+﻿#include <windows.h>
 #include <iostream>
-#include <vector>
 #include <complex>
-#include "../Plugins/lib/ComplexLossFunction.h"
+#include <vector>
+#include <string>
 
-// 接口函数指针定义（对应 extern "C" 的 DLL 导出函数）
-typedef ComplexLossFunction* (*CreateFunc)(const char*);
-typedef void (*DestroyFunc)(ComplexLossFunction*);
+using Complex = std::complex<double>;
+
+// 函数指针声明
+using CreateFunc = void* (*)(const char*);
+using DestroyFunc = void (*)(void*);
+using EvalFunc = double (*)(void*, const Complex*, std::size_t);
+using GradFunc = void (*)(void*, const Complex*, Complex*, std::size_t);
+using NameFunc = const char* (*)(void*);
 
 int main() {
-    HMODULE dll = LoadLibraryA("../Plugins/ComplexLossFunctionDLL.dll");
-    if (!dll) {
-        std::cerr << "Failed to load DLL!" << std::endl;
+    // 加载 DLL
+    HMODULE hDll = LoadLibraryA("../Plugins/RegularizationFunction.dll");
+    if (!hDll) {
+        std::cerr << "Failed to load RegularizationFunction.dll" << std::endl;
         return 1;
     }
 
-    auto create = (CreateFunc)GetProcAddress(dll, "CreateComplexLossFunctionFromJSON");
-    auto destroy = (DestroyFunc)GetProcAddress(dll, "DestroyComplexLossFunction");
+    // 获取函数指针
+    auto Create = (CreateFunc)GetProcAddress(hDll, "CreateRegularizationFromJSON");
+    auto Destroy = (DestroyFunc)GetProcAddress(hDll, "DestroyRegularization");
+    auto Evaluate = (EvalFunc)GetProcAddress(hDll, "EvaluateRegularization");
+    auto Gradient = (GradFunc)GetProcAddress(hDll, "ComputeRegularizationGradient");
+    auto GetName = (NameFunc)GetProcAddress(hDll, "GetRegularizationName");
 
-    if (!create || !destroy) {
-        std::cerr << "Failed to load function symbols." << std::endl;
-        FreeLibrary(dll);
+    if (!Create || !Destroy || !Evaluate || !Gradient || !GetName) {
+        std::cerr << "Failed to bind some exported functions." << std::endl;
+        FreeLibrary(hDll);
         return 1;
     }
 
-    const char* json_config = R"({
+    // JSON 配置
+    std::string json_config = R"({
         "type": "Composite",
         "composite": [
-            { "type": "L2", "weight": 0.6 },
-            { "type": "KLDiv", "weight": 0.4 }
+            { "type": "L2", "weight": 1.0 },
+            { "type": "TV", "weight": 0.5 }
         ]
     })";
 
-    ComplexLossFunction* loss = create(json_config);
-    if (!loss) {
-        std::cerr << "Failed to create loss function." << std::endl;
-        FreeLibrary(dll);
+    // 创建正则项
+    void* handle = Create(json_config.c_str());
+    if (!handle) {
+        std::cerr << "Failed to create regularization term." << std::endl;
+        FreeLibrary(hDll);
         return 1;
     }
 
-    std::vector<std::complex<double>> pred = { {1.0, 0.5}, {0.8, -0.2}, {0.3, 0.9} };
-    std::vector<std::complex<double>> target = { {1.1, 0.6}, {0.7, -0.1}, {0.4, 1.0} };
+    // 准备输入
+    std::vector<Complex> x = { {1.0, 0.0}, {2.0, 0.5}, {1.5, -0.3} };
+    std::vector<Complex> grad(x.size());
 
-    double val = loss->evaluate(pred, target);
-    auto grad = loss->gradient(pred, target);
+    // 评估
+    double value = Evaluate(handle, x.data(), x.size());
+    Gradient(handle, x.data(), grad.data(), x.size());
 
-    std::cout << "Loss value: " << val << std::endl;
-    for (const auto& g : grad) {
-        std::cout << g << std::endl;
+    std::cout << "Regularization Name: " << GetName(handle) << "\n";
+    std::cout << "Value = " << value << "\n";
+    std::cout << "Gradient:\n";
+    for (auto& g : grad) {
+        std::cout << "  " << g << "\n";
     }
 
-    destroy(loss);
-    FreeLibrary(dll);
+    Destroy(handle);
+    FreeLibrary(hDll);
     return 0;
 }
