@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 	LOSS_API ComplexLossFunction* CreateComplexLossFunction(const char* name);
+	LOSS_API ComplexLossFunction* CreateComplexLossFunctionFromJSON(const char* json_config);
 	LOSS_API void DestroyComplexLossFunction(ComplexLossFunction* ptr);
 
 #ifdef __cplusplus

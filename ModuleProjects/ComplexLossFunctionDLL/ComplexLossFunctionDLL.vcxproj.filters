@@ -54,6 +54,15 @@
     <ClCompile Include="ComplexLossFunctionFactor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="LossRegistry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LossConfig.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LossBuiltinRegistration.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AmplitudePhaseL2Loss.h">
@@ -96,6 +105,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ComplexLossFunctionFactor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LossBuiltinRegistration.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LossConfig.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LossRegistry.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,6 +13,18 @@ public:
 
     const char* name() const override { return "AmplitudePhaseL2"; }
 
+    void set_param(const std::unordered_map<std::string, double>& params) override {
+        auto it_amp = params.find("amp_weight");
+        if (it_amp != params.end()) {
+            w_amp = it_amp->second;
+        }
+
+        auto it_phase = params.find("phase_weight");
+        if (it_phase != params.end()) {
+            w_phase = it_phase->second;
+        }
+    }
+
 private:
     double w_amp;
     double w_phase;

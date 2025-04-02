@@ -1,4 +1,8 @@
 #include <string>
+#include <memory>
+#include <unordered_map>
+#include <iostream>
+#include <stdexcept>
 #include "ComplexLossFunctionFactor.h"
 
 #include "CompositeLossFunction.h"
@@ -13,6 +17,11 @@
 #include "JSDivLoss.h"
 #include "WassersteinLoss.h"
 #include "ComplexIoULoss.h"
+
+#include "LossRegistry.h"
+#include "LossConfig.h"
+
+void InitLossFactory();
 
 ComplexLossFunction* CreateComplexLossFunction(const char* name) {
     std::string n(name);
@@ -37,4 +46,15 @@ ComplexLossFunction* CreateComplexLossFunction(const char* name) {
 
 void DestroyComplexLossFunction(ComplexLossFunction* ptr) {
     delete ptr;
+}
+
+ComplexLossFunction* CreateComplexLossFunctionFromJSON(const char* json_str) {
+    InitLossFactory();
+    LossConfig config;
+    if (!ParseLossConfigFromJSON(json_str, config)) {
+        std::cerr << "Failed to parse JSON loss config." << std::endl;
+        return nullptr;
+    }
+    std::unique_ptr<ComplexLossFunction> ptr = LossRegistry::instance().create(config);
+    return ptr ? ptr.release() : nullptr;
 }

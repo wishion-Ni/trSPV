@@ -12,6 +12,13 @@ public:
 
     const char* name() const override { return "ComplexPseudoHuber"; }
 
+    void set_param(const std::unordered_map<std::string, double>& params) override {
+        auto it = params.find("delta");
+        if (it != params.end()) {
+            delta = it->second;
+        }
+    }
+
 private:
     double delta;
 };

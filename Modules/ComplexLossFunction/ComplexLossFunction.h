@@ -5,6 +5,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <memory>
+#include <unordered_map>
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -24,4 +25,7 @@ public:
 
     // 名称
     virtual const char* name() const = 0;
+
+    // 设置参数
+    virtual void set_param(const std::unordered_map<std::string, double>& params) = 0;
 };
