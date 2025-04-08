@@ -61,4 +61,10 @@ extern "C" {
         return h->term->name();
     }
 
+    REG_API RegularizationTerm * GetRegularizationPointer(void* handle) {
+        if (!handle) return nullptr;
+        return static_cast<RegularizationHandle*>(handle)->term.get();
+    }
+
+
 }

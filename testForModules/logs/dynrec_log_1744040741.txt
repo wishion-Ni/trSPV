@@ -1,0 +1,14 @@
+# DynRec Optimization Log
+# Timestamp: 2025-04-07 23:45:41
+
+[Configuration]
+Loss Function: AmplitudePhaseL2
+Loss Config: {"numeric":{"amp_weight":1.0,"phase_weight":1.0},"type":"AmplitudePhaseL2"}
+Regularization: L2
+Regularization Config: {"type":"L2"}
+Lambda: 0.01
+Target: (1.2,0.3) (2.1,0.4) (1.8,-0.2) ...
+Initial x0: 0 0 0 
+
+[Iterations]
+Iter	Loss	GradientNorm

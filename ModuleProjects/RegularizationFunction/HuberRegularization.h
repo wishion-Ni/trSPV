@@ -1,7 +1,7 @@
 #pragma once
 #include "RegularizationTerm.h"
 
-class HuberRegularization : public RegularizationTerm {
+class REG_API HuberRegularization : public RegularizationTerm {
 public:
     explicit HuberRegularization(double delta = 1.0) : delta_(delta) {}
 

@@ -14,4 +14,83 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Factory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LossLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DynRecContext.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RegLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ForwardModel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OptimizationProblem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Optimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GradientDescentOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ConjugateGradientOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MomentumOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NAGOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AdamOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PSOOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DEOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LossLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DynRecContext.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RegLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main_DynRec_demo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GradientDescentOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ConjugateGradientOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MomentumOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NAGOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AdamOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PSOOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DEOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

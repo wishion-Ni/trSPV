@@ -1,7 +1,8 @@
 #include "CompositeRegularization.h"
 
-void CompositeRegularization::addTerm(std::unique_ptr<RegularizationTerm> term, double weight) {
-    terms_.emplace_back(std::move(term), weight);
+void CompositeRegularization::addTerm(std::shared_ptr<RegularizationTerm> term, double weight) {
+    if (!term) throw std::invalid_argument("CompositeRegularizationFunction::addTerm - nullptr passed");
+    terms_.emplace_back(term, weight);
 }
 
 double CompositeRegularization::evaluate(const std::vector<std::complex<double>>& x) const {

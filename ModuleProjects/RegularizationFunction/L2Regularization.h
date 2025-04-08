@@ -1,7 +1,7 @@
 #pragma once
 #include "RegularizationTerm.h"
 
-class L2Regularization : public RegularizationTerm {
+class REG_API L2Regularization : public RegularizationTerm {
 public:
     double evaluate(const std::vector<std::complex<double>>& x) const override;
     std::vector<std::complex<double>> gradient(const std::vector<std::complex<double>>& x) const override;

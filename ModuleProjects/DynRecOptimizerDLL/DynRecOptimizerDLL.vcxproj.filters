@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DynRecOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AdamOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ConjugateGradientOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DEOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DynRecContext.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ForwardModel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GradientDescentOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LossLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MomentumOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NAGOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OptimizationProblem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Optimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PSOOptimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RegLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DynRecOptimizerDLL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OptimizerFactory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DynRecLogger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AdamOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ConjugateGradientOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DEOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DynRecContext.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GradientDescentOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LossLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MomentumOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NAGOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PSOOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RegLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DynRecOptimizerDLL.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DynRecOptimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DynRecLogger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,72 +1,84 @@
-﻿#include <windows.h>
+﻿// main_test_dynrec_dll.cpp
+#include <windows.h>
 #include <iostream>
-#include <complex>
 #include <vector>
+#include <complex>
 #include <string>
+#include <nlohmann/json.hpp>
 
 using Complex = std::complex<double>;
 
-// 函数指针声明
-using CreateFunc = void* (*)(const char*);
+using CreateFunc = void* (*)();
 using DestroyFunc = void (*)(void*);
-using EvalFunc = double (*)(void*, const Complex*, std::size_t);
-using GradFunc = void (*)(void*, const Complex*, Complex*, std::size_t);
-using NameFunc = const char* (*)(void*);
+using LoadFunc = bool (*)(void*, const char*, const char*);
+using ConfigFunc = bool (*)(void*, const Complex*, int, int, const Complex*, int, const char*, const char*, double, const double*, int);
+using OptimizeFunc = bool (*)(void*, const char*, const char*, double*, int);
 
 int main() {
-    // 加载 DLL
-    HMODULE hDll = LoadLibraryA("../Plugins/RegularizationFunction.dll");
-    if (!hDll) {
-        std::cerr << "Failed to load RegularizationFunction.dll" << std::endl;
+    HMODULE dll = LoadLibraryA("../Plugins/DynRecOptimizerDLL.dll");
+    if (!dll) {
+        std::cerr << "Failed to load DLL." << std::endl;
         return 1;
     }
 
-    // 获取函数指针
-    auto Create = (CreateFunc)GetProcAddress(hDll, "CreateRegularizationFromJSON");
-    auto Destroy = (DestroyFunc)GetProcAddress(hDll, "DestroyRegularization");
-    auto Evaluate = (EvalFunc)GetProcAddress(hDll, "EvaluateRegularization");
-    auto Gradient = (GradFunc)GetProcAddress(hDll, "ComputeRegularizationGradient");
-    auto GetName = (NameFunc)GetProcAddress(hDll, "GetRegularizationName");
+    auto Create = (CreateFunc)GetProcAddress(dll, "CreateDynRecOptimizer");
+    auto Destroy = (DestroyFunc)GetProcAddress(dll, "DestroyDynRecOptimizer");
+    auto Load = (LoadFunc)GetProcAddress(dll, "LoadPlugins");
+    auto Configure = (ConfigFunc)GetProcAddress(dll, "Configure");
+    auto Optimize = (OptimizeFunc)GetProcAddress(dll, "Optimize");
 
-    if (!Create || !Destroy || !Evaluate || !Gradient || !GetName) {
-        std::cerr << "Failed to bind some exported functions." << std::endl;
-        FreeLibrary(hDll);
-        return 1;
+    if (!Create || !Destroy || !Load || !Configure || !Optimize) {
+        std::cerr << "Failed to get one or more function pointers." << std::endl;
+        return 2;
     }
 
-    // JSON 配置
-    std::string json_config = R"({
-        "type": "Composite",
-        "composite": [
-            { "type": "L2", "weight": 1.0 },
-            { "type": "TV", "weight": 0.5 }
-        ]
-    })";
+    void* handle = Create();
 
-    // 创建正则项
-    void* handle = Create(json_config.c_str());
-    if (!handle) {
-        std::cerr << "Failed to create regularization term." << std::endl;
-        FreeLibrary(hDll);
-        return 1;
+    // Plugin 路径
+    const char* loss_dll = "../Plugins/ComplexLossFunctionDLL.dll";
+    const char* reg_dll = "../Plugins/RegularizationFunction.dll";
+    if (!Load(handle, loss_dll, reg_dll)) {
+        std::cerr << "Failed to load plugins." << std::endl;
+        return 3;
     }
 
-    // 准备输入
-    std::vector<Complex> x = { {1.0, 0.0}, {2.0, 0.5}, {1.5, -0.3} };
-    std::vector<Complex> grad(x.size());
+    // 构造 A, target, x0
+    Complex A_data[] = {
+        {1.0, 0.0}, {0.5, 0.1}, {0.2, -0.3},
+        {0.1, 0.2}, {1.0, 0.0}, {0.3, 0.1},
+        {0.0, -0.1}, {0.4, 0.3}, {1.0, 0.0}
+    };
+    Complex target[] = { {1.2, 0.3}, {2.1, 0.4}, {1.8, -0.2} };
+    double x0[] = { 0.0, 0.0, 0.0 };
 
-    // 评估
-    double value = Evaluate(handle, x.data(), x.size());
-    Gradient(handle, x.data(), grad.data(), x.size());
+    // JSON
+    std::string loss_json = R"({"type": "AmplitudePhaseL2", "numeric": {"amp_weight": 1.0, "phase_weight": 1.0}})";
+    std::string reg_json = R"({"type": "L2"})";
 
-    std::cout << "Regularization Name: " << GetName(handle) << "\n";
-    std::cout << "Value = " << value << "\n";
-    std::cout << "Gradient:\n";
-    for (auto& g : grad) {
-        std::cout << "  " << g << "\n";
+    bool config_ok = Configure(handle, A_data, 3, 3, target, 3, loss_json.c_str(), reg_json.c_str(), 0.01, x0, 3);
+    if (!config_ok) {
+        std::cerr << "Configuration failed." << std::endl;
+        return 4;
     }
+
+    // 优化器配置
+    std::string optimizer_name = "pso";
+    nlohmann::json optimizer_cfg = {
+        {"max_iter", 1000}
+    };
+    std::string optimizer_cfg_str = optimizer_cfg.dump();
+
+    double result[3];
+    if (!Optimize(handle, optimizer_name.c_str(), optimizer_cfg_str.c_str(), result, 3)) {
+        std::cerr << "Optimization failed." << std::endl;
+        return 5;
+    }
+
+    std::cout << "Optimized x: ";
+    for (double v : result) std::cout << v << " ";
+    std::cout << std::endl;
 
     Destroy(handle);
-    FreeLibrary(hDll);
+    FreeLibrary(dll);
     return 0;
 }
