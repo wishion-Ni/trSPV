@@ -1,0 +1,41 @@
+{
+  "data_file": "data/input.csv",
+  "log_file": "logs/log.txt",
+  "result_file": "output/result.csv",
+  "evaluation_file": "output/eval.csv",
+  "lcurve_file": "output/lcurve.csv",
+
+  "initial_guess": "tikhonov",
+  "custom_x0_file": "data/custom_x0.txt",
+
+  "tau": {
+    "type": "log",
+    "min": 1e-6,
+    "max": 1.0,
+    "num_points": 100
+  },
+
+  "loss": {
+    "type": "L2"
+  },
+
+  "regularization": {
+    "type": "L2",
+    "lambda": 0.01
+  },
+
+  "optimizer": {
+    "type": "adam",
+    "lr": 0.05,
+    "max_iter": 5000
+  },
+
+  "tikhonov": {
+    "lambda_min": 1e-6,
+    "lambda_max": 1e2,
+    "lambda_num": 50,
+    "criterion": "lcurve",
+    "corner_method": "max_curvature",
+    "export_lcurve": "output/lcurve.csv"
+  }
+}

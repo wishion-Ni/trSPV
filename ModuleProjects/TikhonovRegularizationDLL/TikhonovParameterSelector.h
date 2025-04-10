@@ -32,6 +32,14 @@ public:
     bool exportLcurveToCSV(const std::string& filename);
 
     int getN() const;
+    const std::vector<std::complex<double>>& getA() const { return A_; }
+    const std::vector<std::complex<double>>& getB() const { return b_; }
+    const std::vector<std::complex<double>>& getL() const { return L_; }
+
+    int getM() const { return m_; }
+    int getLrows() const { return l_rows_; }
+    int getLcols() const { return l_cols_; }
+
 
 private:
     // problem data

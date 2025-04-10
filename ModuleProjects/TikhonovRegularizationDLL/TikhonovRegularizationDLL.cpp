@@ -58,4 +58,23 @@ extern "C" {
         return selector->exportLcurveToCSV(std::string(filename));
     }
 
+    bool GetSolution(const double lambda, void* handle, double* x_out) {
+        auto* selector = static_cast<TikhonovParameterSelector*>(handle);
+        if (!selector || !x_out) return false;
+
+        TikhonovAnalyticalSolver solver(
+            selector->getA(), selector->getM(), selector->getN(), selector->getB());
+        solver.setRegularizationMatrix(selector->getL(), selector->getLrows(), selector->getLcols());
+        solver.setLambda(lambda);
+
+        auto x_cplx = solver.solve();
+
+        for (int i = 0; i < selector->getN(); ++i) {
+            x_out[i] = std::real(x_cplx[i]);
+        }
+
+        return true;
+    }
+
+
 } // extern "C"

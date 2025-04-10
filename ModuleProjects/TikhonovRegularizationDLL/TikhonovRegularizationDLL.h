@@ -33,4 +33,5 @@ extern "C" {
     // Ö÷¹¦ÄÜ
     TR_DLL_API double FindBestLambda(void* handle);
     TR_DLL_API bool ExportLcurveCSV(void* handle, const char* filename);
+    TR_DLL_API bool GetSolution(const double lambda, void* handle, double* x_out);
 }
